@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CBD441A19ED87C3008B5DA3 /* BLCAwesomeFloatingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBD441919ED87C3008B5DA3 /* BLCAwesomeFloatingToolbar.m */; };
 		1CE43A2D19ECBE4200C09184 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE43A2C19ECBE4200C09184 /* main.m */; };
 		1CE43A3019ECBE4200C09184 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE43A2F19ECBE4200C09184 /* AppDelegate.m */; };
 		1CE43A3819ECBE4200C09184 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE43A3719ECBE4200C09184 /* Images.xcassets */; };
@@ -26,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1CBD441819ED87C3008B5DA3 /* BLCAwesomeFloatingToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCAwesomeFloatingToolbar.h; sourceTree = "<group>"; };
+		1CBD441919ED87C3008B5DA3 /* BLCAwesomeFloatingToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCAwesomeFloatingToolbar.m; sourceTree = "<group>"; };
 		1CE43A2719ECBE4200C09184 /* BlocBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE43A2B19ECBE4200C09184 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CE43A2C19ECBE4200C09184 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 			children = (
 				1CE43A2E19ECBE4200C09184 /* AppDelegate.h */,
 				1CE43A2F19ECBE4200C09184 /* AppDelegate.m */,
+				1CBD441819ED87C3008B5DA3 /* BLCAwesomeFloatingToolbar.h */,
+				1CBD441919ED87C3008B5DA3 /* BLCAwesomeFloatingToolbar.m */,
 				1CE43A5019ECBF0E00C09184 /* BLCWebBrowserViewController.h */,
 				1CE43A5119ECBF0E00C09184 /* BLCWebBrowserViewController.m */,
 				1CE43A3719ECBE4200C09184 /* Images.xcassets */,
@@ -218,6 +223,7 @@
 				1CE43A3019ECBE4200C09184 /* AppDelegate.m in Sources */,
 				1CE43A2D19ECBE4200C09184 /* main.m in Sources */,
 				1CE43A5219ECBF0E00C09184 /* BLCWebBrowserViewController.m in Sources */,
+				1CBD441A19ED87C3008B5DA3 /* BLCAwesomeFloatingToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
