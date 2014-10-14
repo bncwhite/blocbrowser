@@ -402,6 +402,7 @@
 				1CE43A4C19ECBE4200C09184 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1CE43A4D19ECBE4200C09184 /* Build configuration list for PBXNativeTarget "BlocBrowserTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +411,7 @@
 				1CE43A4F19ECBE4200C09184 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
