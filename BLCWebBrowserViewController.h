@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BLCWebBrowserViewController.h
 //  BlocBrowser
 //
 //  Created by Bradley White on 10/13/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BLCWebBrowserViewController : UIViewController
 
 @end
-
