@@ -21,7 +21,8 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)loadView {
+- (void)loadView
+{
     UIView *mainView = [UIView new];
     
     self.webview = [UIWebView new];

@@ -12,5 +12,6 @@
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        //App will not run. It crashes right here.
     }
 }
