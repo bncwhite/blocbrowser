@@ -101,6 +101,9 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self];
     UIView *subview = [self hitTest:location withEvent:event];
+    if (![self.labels containsObject:subview]) {
+        subview = nil;
+    }
     return (UILabel *)subview;
 }
 
@@ -126,7 +129,7 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UILabel *label = [self labelFromTouches:touches withEvent:event];
     
-    if (self.currentLabel == label) {
+    if (label && self.currentLabel == label) {
         NSLog(@"Label tapped: %@", self.currentLabel.text);
         
         if ([self.delegate respondsToSelector:@selector(floatingToolbar:didSelectButtonWithTitle:)]) {
