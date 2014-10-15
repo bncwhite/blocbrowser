@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) BLCAwesomeFloatingToolbar *awesomeToolbar;
 @property (nonatomic, assign) NSUInteger frameCount;
+@property (nonatomic) UITapGestureRecognizer *doubleTap;
 
 @end
 
@@ -33,6 +34,7 @@
     
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+    self.awesomeToolbar.frame = CGRectMake(20, 123, 335, 60);
 }
 
 #pragma mark - UIViewController
@@ -57,9 +59,15 @@
     
     self.awesomeToolbar.delegate = self;
     
+    //Add a gesture to the webview so that if the toolbar is too small, a 3-finger touch will return it to its original size.
+    self.doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnAwesomeToolbarToOriginalSize)];
+    self.doubleTap.numberOfTouchesRequired = 3;
+    [self.webview addGestureRecognizer:self.doubleTap];
+    
     for (UIView *viewToAdd in @[self.webview, self.textField, self.awesomeToolbar]) {
         [mainView addSubview:viewToAdd];
     }
+    
     self.view = mainView;
 }
 - (void) viewWillLayoutSubviews
@@ -73,7 +81,12 @@
     self.textField.frame = CGRectMake(0, 0, width, itemHeight);
     self.webview.frame = CGRectMake(0, CGRectGetMaxY(self.textField.frame), width, browserHeight);
     
-    self.awesomeToolbar.frame = CGRectMake(20, browserHeight / 4.5, width - 40, 60);
+    CGFloat originX = self.awesomeToolbar.frame.origin.x;
+    CGFloat originY = self.awesomeToolbar.frame.origin.y;
+    CGFloat frameWidth = self.awesomeToolbar.frame.size.width;
+    CGFloat frameHeight = self.awesomeToolbar.frame.size.height;
+    
+    self.awesomeToolbar.frame = CGRectMake(originX, originY, frameWidth, frameHeight);
 }
 
 #pragma mark - BLCAwesomeFloatingToolbarDelegate
@@ -88,6 +101,38 @@
     } else if ([title isEqual:kBLCWebBrowserRefreshString]) {
         [self.webview reload];
     }
+}
+
+- (void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didTryToPanWithOffset:(CGPoint)offset {
+    CGPoint startingPoint = toolbar.frame.origin;
+    CGPoint newPoint = CGPointMake(startingPoint.x + offset.x, startingPoint.y + offset.y);
+    
+    CGRect potentialNewFrame = CGRectMake(newPoint.x, newPoint.y, CGRectGetWidth(toolbar.frame), CGRectGetHeight(toolbar.frame));
+    
+    if (CGRectContainsRect(self.view.bounds, potentialNewFrame)) {
+        toolbar.frame = potentialNewFrame;
+    }
+}
+
+- (void)floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didTryToResizeWithScale:(CGFloat)scale
+{
+    //Multiple the width and height by the scale
+    CGRect potentialNewFrame = CGRectMake(toolbar.frame.origin.x, toolbar.frame.origin.y, toolbar.frame.size.width * scale, toolbar.frame.size.height * scale);
+    
+    CGSize minimumSize = CGSizeMake(83.75, 15);
+    
+    //Make sure the frame wont exceed self.view.bounds AND make sure it only gets so small. If it gets two small for user, a 3-finger touch will return it to its original size
+    
+    if (CGRectContainsRect(self.view.bounds, potentialNewFrame) && (potentialNewFrame.size.width > minimumSize.width || potentialNewFrame.size.height > minimumSize.height)) {
+        toolbar.frame = potentialNewFrame;
+    }
+    
+}
+
+- (void) returnAwesomeToolbarToOriginalSize
+{
+    //Returns it to original size after 3-finger touch
+    self.awesomeToolbar.frame = CGRectMake(20, 123, 335, 60);
 }
 
  #pragma mark - UITextFieldDelegate

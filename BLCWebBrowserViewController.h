@@ -12,4 +12,6 @@
 
 - (void) resetWebView;
 
+- (void) returnAwesomeToolbarToOriginalSize;
+
 @end
