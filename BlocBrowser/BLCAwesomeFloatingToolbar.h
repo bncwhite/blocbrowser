@@ -20,6 +20,8 @@
 
 - (void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didTryToResizeWithScale:(CGFloat)scale;
 
+- (void)floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didRotateColorsInArray:(NSMutableArray *)colorsArray withArray:(NSMutableArray *)labelsArray;
+
 @end
 
 @interface BLCAwesomeFloatingToolbar : UIView

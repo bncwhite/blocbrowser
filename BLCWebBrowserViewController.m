@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) BLCAwesomeFloatingToolbar *awesomeToolbar;
 @property (nonatomic, assign) NSUInteger frameCount;
-@property (nonatomic) UITapGestureRecognizer *doubleTap;
+@property (nonatomic) UITapGestureRecognizer *tripleTouch;
 
 @end
 
@@ -60,9 +60,9 @@
     self.awesomeToolbar.delegate = self;
     
     //Add a gesture to the webview so that if the toolbar is too small, a 3-finger touch will return it to its original size.
-    self.doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnAwesomeToolbarToOriginalSize)];
-    self.doubleTap.numberOfTouchesRequired = 3;
-    [self.webview addGestureRecognizer:self.doubleTap];
+    self.tripleTouch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnAwesomeToolbarToOriginalSize)];
+    self.tripleTouch.numberOfTouchesRequired = 3;
+    [self.webview addGestureRecognizer:self.tripleTouch];
     
     for (UIView *viewToAdd in @[self.webview, self.textField, self.awesomeToolbar]) {
         [mainView addSubview:viewToAdd];
@@ -125,6 +125,19 @@
     
     if (CGRectContainsRect(self.view.bounds, potentialNewFrame) && (potentialNewFrame.size.width > minimumSize.width || potentialNewFrame.size.height > minimumSize.height)) {
         toolbar.frame = potentialNewFrame;
+    }
+}
+
+- (void)floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didRotateColorsInArray:(NSMutableArray *)colorsArray withArray:(NSMutableArray *)labelsArray
+{
+    UIColor *color = colorsArray.lastObject;
+    
+    [colorsArray insertObject:color atIndex:0];
+    [colorsArray removeLastObject];
+    
+    for (UILabel *label in labelsArray) {
+        NSUInteger currentIndex = [labelsArray indexOfObject:label];
+        label.backgroundColor = colorsArray[currentIndex];
     }
     
 }
