@@ -47,7 +47,7 @@
     self.webview.delegate = self;
     
     self.textField = [UITextField new];
-    self.textField.keyboardType = UIKeyboardTypeURL;
+    self.textField.keyboardType = UIKeyboardTypeDefault;
     self.textField.returnKeyType = UIReturnKeyDone;
     self.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -91,17 +91,17 @@
 
 #pragma mark - BLCAwesomeFloatingToolbarDelegate
 
-- (void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didSelectButtonWithTitle:(NSString *)title {
-    if ([title isEqual:kBLCWebBrowserBackString]) {
-        [self.webview goBack];
-    } else if ([title isEqual:kBLCWebBrowserForwardString]) {
-        [self.webview goForward];
-    } else if ([title isEqual:kBLCWebBrowserStopString]) {
-        [self.webview stopLoading];
-    } else if ([title isEqual:kBLCWebBrowserRefreshString]) {
-        [self.webview reload];
-    }
-}
+//- (void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didSelectButtonWithTitle:(NSString *)title {
+//    if ([title isEqual:kBLCWebBrowserBackString]) {
+//        [self.webview goBack];
+//    } else if ([title isEqual:kBLCWebBrowserForwardString]) {
+//        [self.webview goForward];
+//    } else if ([title isEqual:kBLCWebBrowserStopString]) {
+//        [self.webview stopLoading];
+//    } else if ([title isEqual:kBLCWebBrowserRefreshString]) {
+//        [self.webview reload];
+//    }
+//}
 
 - (void) floatingToolbar:(BLCAwesomeFloatingToolbar *)toolbar didTryToPanWithOffset:(CGPoint)offset {
     CGPoint startingPoint = toolbar.frame.origin;
